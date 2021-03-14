@@ -1,1 +1,7 @@
 This is where all the users created raffles show 
+
+<ul>
+  <% @raffles.each do |raffle| %>
+    <li><%= raffle.title %>Goal: <%= raffle.goal %></li>
+  <% end %>
+</ul>
