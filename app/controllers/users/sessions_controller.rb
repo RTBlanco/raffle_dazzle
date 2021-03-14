@@ -26,6 +26,10 @@ class Users::SessionsController < Devise::SessionsController
   end
   
   def after_sign_in_path_for(resource)
-    user_home_path(resource)
+    home_path
   end 
+
+  def respond_to_on_destroy
+    redirect_to new_user_session_path
+  end
 end
