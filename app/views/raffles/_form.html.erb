@@ -1,0 +1,23 @@
+<%= form_for raffle do |r| %>
+  <div class="fieldset">
+    <%= r.label :title %>
+    <%= r.text_field :title %>
+  </div>
+  
+  <div class="fieldset">
+    <%= r.label :item %>
+    <%= r.text_field :item %>
+  </div>
+
+  <div class="fieldset">
+    <%= r.label :goal %>
+    <%= r.text_field :goal %>
+  </div>
+  
+  <div class="fieldset">
+    <%= r.label :description %>
+    <%= r.text_area :description %>
+  </div>
+
+  <%= r.submit %>
+<% end %>

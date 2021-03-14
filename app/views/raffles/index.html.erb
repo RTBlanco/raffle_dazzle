@@ -1,0 +1,7 @@
+This is where all the users created raffles show 
+
+<ul>
+  <% @raffles.each do |raffle| %>
+    <li><%= link_to raffle.title, raffle_path(raffle) %> Goal: <%= raffle.goal %> <%= link_to "edit", edit_raffle_path(raffle) %></li>
+  <% end %>
+</ul>

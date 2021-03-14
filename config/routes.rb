@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   
   root "application#home"
   
-  get 'home', to: 'raffles#home', as: :home
-  get 'browse', to: 'raffles#browse', as: :browse
-  get 'show', to: 'raffles#show', as: :show
+  get 'home', to: 'raffles#home'
+  get 'browse', to: 'raffles#browse'
+  get 'my_raffles', to: 'raffles#index'
 
 
-  resources :raffles, only: [:create, :new]
+  resources :raffles, only: [:create, :new, :edit, :update, :show]
   # resource :user, only: [:home, :browse]
   # resolve("User") {[:user]}
   # devise_for :users

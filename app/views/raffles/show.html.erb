@@ -1,7 +1,13 @@
-This is where all the users created raffles show 
+<% if current_user != @raffle.user %>
+  Owner: <%= @raffle.user.name %>
+<% end %>
 
-<ul>
-  <% @raffles.each do |raffle| %>
-    <li><%= raffle.title %>Goal: <%= raffle.goal %></li>
-  <% end %>
-</ul>
+title: <%= @raffle.title %>
+<br>
+item: <%= @raffle.item %>
+<br>
+goal: <%= @raffle.goal %>
+<br>
+description: <%= @raffle.description %>
+<br>
+<%= link_to "edit", edit_raffle_path if current_user == @raffle.user %>
