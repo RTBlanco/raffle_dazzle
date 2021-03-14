@@ -1,0 +1,16 @@
+<%= form_for @raffle do |r| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :item %>
+  <%= f.text_field :item %>
+
+  <%= f.label :goal %>
+  <%= f.text_field :goal %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.submit %>
+<% end %>
+

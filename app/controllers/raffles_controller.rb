@@ -4,4 +4,7 @@ class RafflesController < ApplicationController
 
   def browse
   end 
+
+  def show 
+  end 
 end 
