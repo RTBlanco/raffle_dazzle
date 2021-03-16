@@ -1,17 +1,21 @@
 class RafflesController < ApplicationController
-  def account
-    @account = User.find_by(username: params[:username])
-    unless @account
-      redirect_to account_path(current_user), alert: "Could not find user"
-    end
-  end 
+  # def account
+  #   @account = User.find_by(username: params[:username])
+  #   unless @account
+  #     redirect_to account_path(current_user), alert: "Could not find user"
+  #   end
+  # end 
 
   def browse
     @raffles = Raffle.all
   end 
 
   def index
-    @raffles = current_user.raffles
+    user = User.find_by(username: params[:username])
+    if user.nil? 
+      user = current_user
+    end
+    @raffles = user.raffles
   end
 
   def show 
@@ -25,7 +29,7 @@ class RafflesController < ApplicationController
   def create 
     raffle = current_user.raffles.build(raffle_params)
     if raffle.save
-      redirect_to account_path, notice: 'Raffle created' 
+      redirect_to user_raffles_path(current_user), notice: 'Raffle created' 
     else
       redirect_to new_raffle_path, alert: "something is wrong"
     end

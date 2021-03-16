@@ -5,7 +5,7 @@
   <br>
   <%= link_to "Create new Raffle", new_raffle_path %>
   <br>
-  <%= link_to "My raffles", my_raffles_path %>
+  <%= link_to "My raffles", user_raffles_path(current_user) %>
   
   <br>
 <% else %>

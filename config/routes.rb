@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   
   # get 'account/:username', to: 'raffles#account'
   get 'browse', to: 'raffles#browse'
-  get 'my_raffles', to: 'raffles#index'
+  # get 'my_raffles', to: 'raffles#index'
   
 
   resources :raffles, only: [:create, :new, :edit, :update, :show]
 
   
-  resources :users, path: 'account', controller: 'users/users', only: [:show] do
-    resources :raffle, only: [:show]
+  resources :users, path: 'accounts', param: :username, controller: 'users/users', only: [:show] do
+    resources :raffles, only: [:show, :index]
   end
   
 
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   #   get 'sign_up', to: 'user/registrations#create'
   # end
   
-  devise_for :users, path_names: { sign_in: "login", sign_out: 'logout'},
+  devise_for :users, path: 'account', path_names: { sign_in: "login", sign_out: 'logout'},
               controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
               # path: 'accounts', singular: :account
   

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :raffles
   has_many :entries
   has_many :entered_raffles , through: :entries
+
+  def to_param
+    self.username
+  end
 end
