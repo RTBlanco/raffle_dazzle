@@ -1,5 +1,9 @@
 class RafflesController < ApplicationController
-  def home 
+  def account
+    @account = User.find_by(username: params[:username])
+    unless @account
+      redirect_to account_path(current_user), alert: "Could not find user"
+    end
   end 
 
   def browse
@@ -21,7 +25,7 @@ class RafflesController < ApplicationController
   def create 
     raffle = current_user.raffles.build(raffle_params)
     if raffle.save
-      redirect_to home_path, notice: 'Raffle created' 
+      redirect_to account_path, notice: 'Raffle created' 
     else
       redirect_to new_raffle_path, alert: "something is wrong"
     end

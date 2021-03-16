@@ -3,13 +3,20 @@ Rails.application.routes.draw do
   
   root "application#home"
   
-  get 'home', to: 'raffles#home'
+  # get 'account/:username', to: 'raffles#account'
   get 'browse', to: 'raffles#browse'
   get 'my_raffles', to: 'raffles#index'
-
+  
 
   resources :raffles, only: [:create, :new, :edit, :update, :show]
-  # resource :user, only: [:home, :browse]
+
+  
+  resources :users, path: 'account', controller: 'users/users', only: [:show] do
+    resources :raffle, only: [:show]
+  end
+  
+
+  
   # resolve("User") {[:user]}
   # devise_for :users
   # devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
@@ -21,5 +28,6 @@ Rails.application.routes.draw do
   
   devise_for :users, path_names: { sign_in: "login", sign_out: 'logout'},
               controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
+              # path: 'accounts', singular: :account
   
 end
