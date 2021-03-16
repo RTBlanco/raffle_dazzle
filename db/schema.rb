@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_232208) do
+ActiveRecord::Schema.define(version: 2021_03_16_054300) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_232208) do
     t.integer "goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "cost", default: "0.0", null: false
     t.index ["user_id"], name: "index_raffles_on_user_id"
   end
 
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_232208) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "funds", default: "0.0", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
