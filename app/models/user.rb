@@ -12,7 +12,4 @@ class User < ApplicationRecord
     self.username
   end
 
-  def enter_raffle(raffle)
-    self.entered_raffles << raffle
-  end 
 end

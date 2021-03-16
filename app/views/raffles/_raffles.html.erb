@@ -1,5 +1,5 @@
 <ul>
   <% raffles.each do |raffle| %>
-    <li><%= link_to "#{raffle.title} Goal: #{raffle.goal}", raffle_path(raffle) %> <%= link_to "edit", edit_raffle_path(raffle) if raffle.user == current_user%></li>
+    <li><%= link_to "#{raffle.title} Goal: #{number_to_currency(raffle.goal)} Cost: #{number_to_currency(raffle.cost)}", raffle_path(raffle) %> <%= link_to "edit", edit_raffle_path(raffle) if raffle.user == current_user%></li>
   <% end %>
 </ul>

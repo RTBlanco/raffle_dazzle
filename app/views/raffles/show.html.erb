@@ -6,8 +6,11 @@ title: <%= @raffle.title %>
 <br>
 item: <%= @raffle.item %>
 <br>
-goal: <%= @raffle.goal %>
+goal: <%= number_to_currency(@raffle.goal) %>
+<br>
+cost: <%= number_to_currency(@raffle.cost) %>
 <br>
 description: <%= @raffle.description %>
 <br>
+<%= button_to "Enter", enter_path(@raffle), method: :post unless current_user == @raffle.user %>
 <%= link_to "edit", edit_raffle_path if current_user == @raffle.user %>

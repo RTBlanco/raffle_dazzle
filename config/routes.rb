@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # get 'account/:username', to: 'raffles#account'
   get 'browse', to: 'raffles#browse'
   # get 'my_raffles', to: 'raffles#index'
-  
+  post 'enter/:id', to: 'raffles#enter', as: :enter
+  patch 'funds', to: 'users/users#funds'
 
   resources :raffles, only: [:create, :new, :edit, :update, :show]
 
