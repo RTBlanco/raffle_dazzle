@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'entered_raffles', to: 'raffles#entered'
 
-  resources :raffles, only: [:create, :new, :edit, :update, :show]
+  resources :raffles, only: [:create, :new, :edit, :update, :show, :destroy]
 
   
   resources :users, path: 'accounts', param: :username, controller: 'users/users', only: [:show] do
