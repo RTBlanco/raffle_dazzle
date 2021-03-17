@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_111527) do
+ActiveRecord::Schema.define(version: 2021_03_17_144608) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_03_17_111527) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "funds", default: "0.0", null: false
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
