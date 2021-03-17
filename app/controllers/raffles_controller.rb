@@ -43,6 +43,7 @@ class RafflesController < ApplicationController
 
   def create 
     raffle = current_user.raffles.build(raffle_params)
+    raffle.cost = raffle.goal / 20
     if raffle.save
       redirect_to user_raffles_path(current_user), notice: 'Raffle created' 
     else
@@ -72,7 +73,7 @@ class RafflesController < ApplicationController
   private
 
   def raffle_params 
-    params.require(:raffle).permit(:title, :item, :cost, :goal, :description)
+    params.require(:raffle).permit(:title, :item, :goal, :description)
   end
 
   def can_afford?(raffle)
@@ -81,9 +82,9 @@ class RafflesController < ApplicationController
   
   def purhase(raffle)
     current_user.funds -= raffle.cost
-    raffle.user.funds += raffle.cost
+    raffle.amount += raffle.cost
     current_user.save
-    raffle.user.save
+    raffle.save
     current_user.entered_raffles << raffle
   end
 end 
