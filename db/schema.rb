@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_144608) do
+ActiveRecord::Schema.define(version: 2021_03_17_163257) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_03_17_144608) do
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "cost", default: "0.0", null: false
     t.decimal "amount", default: "0.0", null: false
+    t.integer "winner_id"
     t.index ["user_id"], name: "index_raffles_on_user_id"
   end
 
