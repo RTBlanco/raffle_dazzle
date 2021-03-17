@@ -6,6 +6,10 @@ class RafflesController < ApplicationController
   #   end
   # end 
 
+  def entered 
+    @raffles = current_user.entered_raffles 
+  end
+
   def enter 
     raffle = Raffle.find(params[:id])
     if can_afford?(raffle)
@@ -21,7 +25,8 @@ class RafflesController < ApplicationController
   end 
 
   def index
-    user = User.find_by(username: params[:username])
+    user = User.find_by(username: params[:user_username])
+    # binding.pry
     if user.nil? 
       user = current_user
     end
@@ -58,6 +63,8 @@ class RafflesController < ApplicationController
       redirect_to edit_raffle_path, alert: "something is wrong"
     end
   end 
+
+  
 
   private
 

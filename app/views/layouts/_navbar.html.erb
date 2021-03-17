@@ -6,7 +6,7 @@
   <%= link_to "Create new Raffle", new_raffle_path %>
   <br>
   <%= link_to "My raffles", user_raffles_path(current_user) %> 
-  
+  <%= link_to "Entered raffles", entered_raffles_path %>
   <%= render "raffles/modal" %><%= number_to_currency(current_user.funds) %>
   <br>
 <% else %>

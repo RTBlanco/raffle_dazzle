@@ -1,5 +1,6 @@
 <% if current_user != @raffle.user %>
-  Owner: <%= @raffle.user.name %>
+  Owner: <%= link_to @raffle.user.username, user_raffles_path(@raffle.user) %>
+  <br>
 <% end %>
 
 title: <%= @raffle.title %>
@@ -12,5 +13,11 @@ cost: <%= number_to_currency(@raffle.cost) %>
 <br>
 description: <%= @raffle.description %>
 <br>
-<%= button_to "Enter", enter_path(@raffle), method: :post unless current_user == @raffle.user %>
+
+<% if current_user != @raffle.user && !@raffle.entered_users.include?(current_user) %>
+  <%= button_to "Enter", enter_path(@raffle), method: :post%>
+<% elsif @raffle.entered_users.include?(current_user) %>
+  <input type="submit" value="Entered" disabled>
+<% end %>
+
 <%= link_to "edit", edit_raffle_path if current_user == @raffle.user %>

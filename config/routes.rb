@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'enter/:id', to: 'raffles#enter', as: :enter
   patch 'funds', to: 'users/users#funds'
 
+  get 'entered_raffles', to: 'raffles#entered'
+
   resources :raffles, only: [:create, :new, :edit, :update, :show]
 
   
