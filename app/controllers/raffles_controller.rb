@@ -6,19 +6,19 @@ class RafflesController < ApplicationController
   #   end
   # end 
 
-  def entered 
-    @raffles = current_user.entered_raffles 
-  end
+  # def entered 
+  #   @raffles = current_user.entered_raffles 
+  # end
 
-  def enter 
-    raffle = Raffle.find(params[:id])
-    if can_afford?(raffle)
-      purhase(raffle)
-      redirect_to raffle_path(raffle), notice: "you succsefully entered the raffle"
-    else
-      redirect_to raffle_path(raffle), alert: "Not enough funds"
-    end 
-  end
+  # def enter 
+  #   raffle = Raffle.find(params[:id])
+  #   if can_afford?(raffle)
+  #     purhase(raffle)
+  #     redirect_to raffle_path(raffle), notice: "you succsefully entered the raffle"
+  #   else
+  #     redirect_to raffle_path(raffle), alert: "Not enough funds"
+  #   end 
+  # end
 
   def browse
     @raffles = Raffle.all

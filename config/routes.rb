@@ -4,16 +4,20 @@ Rails.application.routes.draw do
   root "application#home"
   
   get 'browse', to: 'raffles#browse'
-  post 'enter/:id', to: 'raffles#enter', as: :enter
   patch 'funds', to: 'users/users#funds'
-
-  get 'entered_raffles', to: 'raffles#entered'
-
-  resources :raffles, only: [:create, :new, :edit, :update, :show, :destroy]
+  
+  
+  resources :raffles, only: [:create, :new, :edit, :update, :show, :destroy] do 
+    # post '/raffles/:raffle_id/entries', to: 'entries#enter', as: :enter
+    resources :entries, only: [:create, :index]
+    get 'entered_users', to: 'entries#users'
+  end
 
   
+
+
   resources :users, path: 'accounts', param: :username, controller: 'users/users', only: [:show] do
-    resources :raffles, only: [:show, :index]
+    resources :raffles, only: [:show, :index, :new]
   end
   
   
