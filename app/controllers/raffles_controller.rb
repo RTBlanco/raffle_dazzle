@@ -32,12 +32,16 @@ class RafflesController < ApplicationController
   end
 
   def create 
-    raffle = current_user.raffles.build(raffle_params)
-    raffle.cost = raffle.goal / 20
-    if raffle.save
+    @raffle = current_user.raffles.build(raffle_params)
+    # binding.pry
+    if @raffle.save
+      @raffle.cost = @raffle.goal / 20
       redirect_to user_raffles_path(current_user), notice: 'Raffle created' 
+    
     else
-      redirect_to new_raffle_path, alert: "something is wrong"
+      # redirect_to new_raffle_path#, alert: "something is wrong" # show the errors to why it didnt show 
+      render :new
+      # redirect_to action: 'new'
     end
   end
 
