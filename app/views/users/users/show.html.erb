@@ -1,7 +1,10 @@
-username: <%= @account.username %>
-<br>
-name: <%= @account.name %>
-<br>
-email: <%= @account.email %>
 
-<%= render partial: "raffles/raffles", locals: {raffles: @account.raffles  }%>
+<% if !@account.nil? %>
+  username: <%= @account.username %>
+  <br>
+  name: <%= @account.name %>
+  <br>
+  email: <%= @account.email %>
+
+  <%= render partial: "raffles/raffles", locals: {raffles: @account.raffles  }%>
+<% end %>

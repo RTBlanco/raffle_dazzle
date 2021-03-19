@@ -11,5 +11,5 @@
   <%= render "raffles/modal" %><%= number_to_currency(current_user.funds) %>
   <br>
 <% else %>
-  <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> 
+  <%= link_to "browse", browse_path %>
 <% end %>

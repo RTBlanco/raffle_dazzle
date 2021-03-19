@@ -1,5 +1,6 @@
 class RafflesController < ApplicationController
-
+  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:browse, :show]
   def browse
     begin
       @raffles = Raffle.raffle_search(raffle_params.to_hash['title']) 
@@ -14,6 +15,7 @@ class RafflesController < ApplicationController
     # binding.pry
     if user.nil? 
       user = current_user
+      flash[:alert] = "#{params[:user_username]} could not be found."
     end
     @raffles = user.raffles
   end
