@@ -1,8 +1,12 @@
 class RafflesController < ApplicationController
 
   def browse
-    # binding.pry
-    @raffles = Raffle.raffle_search(raffle_params)
+    begin
+      @raffles = Raffle.raffle_search(raffle_params.to_hash['title']) 
+      @message = "Your search - #{raffle_params.to_hash['title']} - did not match any raffle tiles."
+    rescue ActionController::ParameterMissing
+      @raffles = Raffle.all
+    end
   end 
 
   def index

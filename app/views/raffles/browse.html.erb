@@ -1,5 +1,9 @@
-<%= form_tag browse_path method: :get do %>
-  <%= text_field_tag :"raffle[:name]" %>
+<%= form_tag browse_path do %>
+  <%= text_field_tag :"raffle[title]" %>
   <%= submit_tag "Search"%>
 <% end %>
-<%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
+<% if !@raffles.empty? %> 
+  <%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
+<% else %>
+  <%= @message %>
+<% end %>
