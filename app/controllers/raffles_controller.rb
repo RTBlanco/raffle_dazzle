@@ -1,27 +1,8 @@
 class RafflesController < ApplicationController
-  # def account
-  #   @account = User.find_by(username: params[:username])
-  #   unless @account
-  #     redirect_to account_path(current_user), alert: "Could not find user"
-  #   end
-  # end 
-
-  # def entered 
-  #   @raffles = current_user.entered_raffles 
-  # end
-
-  # def enter 
-  #   raffle = Raffle.find(params[:id])
-  #   if can_afford?(raffle)
-  #     purhase(raffle)
-  #     redirect_to raffle_path(raffle), notice: "you succsefully entered the raffle"
-  #   else
-  #     redirect_to raffle_path(raffle), alert: "Not enough funds"
-  #   end 
-  # end
 
   def browse
-    @raffles = Raffle.all
+    # binding.pry
+    @raffles = Raffle.raffle_search(raffle_params)
   end 
 
   def index
@@ -52,7 +33,11 @@ class RafflesController < ApplicationController
   end
 
   def edit
-    @raffle = current_user.raffles.find(params[:id]) #AREL to speed things up
+    @raffle = current_user.raffles.find_by(id: params[:id]) #AREL to speed things up
+    # binding.pry
+    if @raffle.nil? 
+      redirect_to browse_path, alert: "Raffle unkown"
+    end 
   end 
 
   def update

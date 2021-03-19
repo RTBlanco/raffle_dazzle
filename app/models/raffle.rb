@@ -11,4 +11,6 @@ class Raffle < ApplicationRecord
 
   # Validations 
   validates :title, :item, :goal, :description, presence: true 
+
+  scope :raffle_search, ->(title) {where("name LIKE ?", title)}
 end

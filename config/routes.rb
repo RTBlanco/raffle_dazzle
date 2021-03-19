@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "application#home"
   
   get 'browse', to: 'raffles#browse'
+  post 'browse', to: 'raffles#browse'
   patch 'funds', to: 'users/users#funds'
   
   
