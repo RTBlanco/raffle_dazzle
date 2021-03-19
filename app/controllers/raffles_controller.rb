@@ -1,6 +1,9 @@
 class RafflesController < ApplicationController
+  before_action :set_user_raffle, only: [:edit, :update]
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:browse, :show]
+
+
   def browse
     begin
       @raffles = Raffle.raffle_search(raffle_params.to_hash['title']) 
@@ -39,7 +42,7 @@ class RafflesController < ApplicationController
   end
 
   def edit
-    @raffle = current_user.raffles.find_by(id: params[:id]) #AREL to speed things up
+    # @raffle = current_user.raffles.find_by(id: params[:id]) #AREL to speed things up
     # binding.pry
     if @raffle.nil? 
       redirect_to browse_path, alert: "Raffle unkown"
@@ -47,9 +50,9 @@ class RafflesController < ApplicationController
   end 
 
   def update
-    @raffle = current_user.raffles.find(params[:id]) #This is not dry user before_action
-    @raffle.update(raffle_params)
-    if @raffle.valid?
+    # @raffle = current_user.raffles.find(params[:id]) #This is not dry user before_action
+    
+    if @raffle.update(raffle_params)
       redirect_to raffle_path(@raffle), notice: 'Raffle updated'
     else
       redirect_to edit_raffle_path, alert: "something is wrong"
@@ -77,5 +80,9 @@ class RafflesController < ApplicationController
     current_user.save
     raffle.save
     current_user.entered_raffles << raffle
+  end
+   
+  def set_user_raffle
+    @raffle = current_user.raffles.find(params[:id])
   end
 end 
