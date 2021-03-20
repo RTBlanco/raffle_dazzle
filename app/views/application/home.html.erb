@@ -1,1 +1,15 @@
-<%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %>
+<div class="container root">
+  <div class="row justify-content-around align-items-center">
+    <div class="col-lg-4">
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. At perferendis excepturi dicta pariatur! Ea, quos. Reprehenderit eaque pariatur, sequi consequuntur nulla ratione ipsam aut, eius omnis, deleniti voluptatibus ea? Commodi?
+      </p>
+    </div>
+    <div class="col-lg-4 user-reg">
+      <%= link_to "login", new_user_session_path, class: "btn btn-primary form-btn" %> 
+      <p>or</p>
+      <%= link_to "Create account", new_user_registration_path, class: "btn btn-success form-btn" %>
+    </div>
+  </div>
+</div>
+
