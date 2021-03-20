@@ -3,3 +3,9 @@
   name: <%= user.name %>
   email: <%= user.email %>
 <% end %>
+
+<% if @raffle.winner.nil? %>
+  <%= button_to "Select winner", raffle_winner_path, method: :post %>
+<% else %> 
+  the winner is <%= link_to @raffle.winner.username, user_path(@raffle.winner) %>
+<% end %>

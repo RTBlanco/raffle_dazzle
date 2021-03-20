@@ -18,6 +18,14 @@ class EntriesController < ApplicationController
     end 
   end
 
+  def winner 
+    @raffle = Raffle.find(params[:raffle_id])
+    @winner = @raffle.entered_users.sample
+    @raffle.winner = @winner
+    @raffle.save
+    redirect_to raffle_entered_users_path
+  end
+
   private
 
   def can_afford?(raffle)

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     # post '/raffles/:raffle_id/entries', to: 'entries#enter', as: :enter
     resources :entries, only: [:create, :index]
     get 'entered_users', to: 'entries#users'
+    post 'winner', to: 'entries#winner'  
   end
 
   

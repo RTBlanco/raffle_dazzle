@@ -6,5 +6,5 @@
   <br>
   email: <%= @account.email %>
 
-  <%= link_to "edit", edit_user_registration_path %>
+  <%= link_to "edit", edit_user_registration_path if current_user == @account %>
 <% end %>

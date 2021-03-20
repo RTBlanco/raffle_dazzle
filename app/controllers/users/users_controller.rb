@@ -17,7 +17,7 @@ class Users::UsersController < ApplicationController
     current_user.funds += amount.to_f
     current_user.save
   end
-
+  
   private 
 
   def fund_params
