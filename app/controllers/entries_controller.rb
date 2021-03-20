@@ -1,7 +1,8 @@
 class EntriesController < ApplicationController
+  before_action :set_raffle, :authenticate_user!
+  skip_before_action :set_raffle, only: [:index]
+
   def users
-    # binding.pry
-    @raffle = Raffle.find(params[:raffle_id])
   end
 
   def index 
@@ -9,17 +10,15 @@ class EntriesController < ApplicationController
   end
 
   def create 
-    raffle = Raffle.find(params[:raffle_id])
-    if raffle && can_afford?(raffle)
-      purhase(raffle)
-      redirect_to raffle_path(raffle), notice: "you succsefully entered the raffle"
+    if @raffle && can_afford?(@raffle)
+      purhase(@raffle)
+      redirect_to raffle_path(@raffle), notice: "you succsefully entered the raffle"
     else
-      redirect_to raffle_path(raffle), alert: "Not enough funds"
+      redirect_to raffle_path(@raffle), alert: "Not enough funds"
     end 
   end
 
   def winner 
-    @raffle = Raffle.find(params[:raffle_id])
     @winner = @raffle.entered_users.sample
     @raffle.winner = @winner
     @raffle.save
@@ -27,6 +26,10 @@ class EntriesController < ApplicationController
   end
 
   private
+
+  def set_raffle
+    @raffle = Raffle.find(params[:raffle_id])
+  end
 
   def can_afford?(raffle)
     current_user.funds >= raffle.cost 
