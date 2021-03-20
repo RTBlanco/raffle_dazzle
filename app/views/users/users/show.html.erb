@@ -6,5 +6,5 @@
   <br>
   email: <%= @account.email %>
 
-  <%= render partial: "raffles/raffles", locals: {raffles: @account.raffles  }%>
+  <%= link_to "edit", edit_user_registration_path %>
 <% end %>
