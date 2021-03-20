@@ -1,10 +1,10 @@
-<div class="container">
-  <!-- <div class="row"> -->
-  <div class=" raffle">
-    <h2><%= raffle.title %></h2>
-    <p><strong>Item:</strong><%= raffle.item%></p>
-    <p><strong>Goal:</strong><%= number_to_currency(raffle.goal) %></p>
-    <p><strong>Cost:</strong><%= number_to_currency(raffle.cost) %></p>
+<%= link_to raffle_path(raffle) do %>
+  <div class="container">
+    <div class="raffle">
+      <h2><%= raffle.title %></h2>
+      <p><strong>Item:</strong><%= raffle.item%></p>
+      <p><strong>Goal:</strong><%= number_to_currency(raffle.goal) %></p>
+      <p><strong>Cost:</strong><%= number_to_currency(raffle.cost) %></p>
+    </div>
   </div>
-  <!-- </div> -->
-</div>
+<% end %>
