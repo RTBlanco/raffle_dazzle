@@ -15,6 +15,18 @@
  */
 @import "bootstrap/scss/bootstrap";
 
-#new_user {
-  text-align: center;
+.session {
+  h2 {
+    text-align: center;
+  }
+  form {
+    text-align: center;
+    .form-btn{
+      width: -webkit-fill-available;
+      margin-top: 21px;
+    }
+  }
+  div {
+    text-align: center;
+  }
 }
