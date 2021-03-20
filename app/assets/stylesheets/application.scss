@@ -13,4 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap/scss/bootstrap"; 
+@import "bootstrap/scss/bootstrap";
+
+#new_user {
+  text-align: center;
+}
