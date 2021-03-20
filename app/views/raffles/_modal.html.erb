@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#exampleModal">
-  Funds: 
+  <%= number_to_currency(current_user.funds) %> 
 </button>
 
 <!-- Modal -->

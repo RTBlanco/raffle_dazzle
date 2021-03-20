@@ -1,15 +1,39 @@
 <% if user_signed_in? %>
-  <%= button_to "logout", destroy_user_session_path, method: :delete %>
-  <%= link_to "browse", browse_path %>
-  <%= link_to "account", user_path(current_user) %>
-  <br>
-  <%= link_to "Create new Raffle", new_raffle_path %>
-  <br>
-  
-  <%= link_to "My raffles", user_raffles_path(current_user) %>
-  <%= link_to "Entered raffles", raffle_entries_path(current_user) %>
-  <%= render "raffles/modal" %><%= number_to_currency(current_user.funds) %>
-  <br>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <%= link_to "Browse", browse_path %>
+    <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+          <%= link_to "My raffles", user_raffles_path(current_user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="#">Link</a> -->
+          <%= link_to "New Raffle", new_raffle_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- <a class="dropdown-item" href="#">Action</a> -->
+            <%= link_to "View Account", user_path(current_user), class: "dropdown-item" %>
+            <!-- <a class="dropdown-item" href="#">Another action</a> -->
+            <%= link_to "Entered raffles", raffle_entries_path(current_user), class: "dropdown-item" %>
+            <%= render "raffles/modal" %>
+            <div class="dropdown-divider"></div>
+            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+            <%= link_to "logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          </div>
+        </li>
+      </ul>
+      <%= render 'layouts/search_bar' %>
+    </div>
+  </nav>
 <% else %>
-  <%= link_to "browse", browse_path %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <%= link_to "browse", browse_path %>
+    <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %>
+    <%= render 'layouts/search_bar' %>
+  </nav>
 <% end %>

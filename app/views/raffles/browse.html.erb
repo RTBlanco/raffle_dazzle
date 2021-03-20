@@ -1,7 +1,3 @@
-<%= form_tag browse_path do %>
-  <%= text_field_tag :"raffle[title]" %>
-  <%= submit_tag "Search"%>
-<% end %>
 <% if !@raffles.empty? %> 
   <%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
 <% else %>
