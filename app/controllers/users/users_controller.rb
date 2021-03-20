@@ -4,7 +4,6 @@ class Users::UsersController < ApplicationController
 
   def show
     @account = User.find_by(username: params[:username])
-    # binding.pry
     if @account.nil?
       @account = current_user
     elsif @account.nil? && !user_signed_in?
@@ -13,8 +12,7 @@ class Users::UsersController < ApplicationController
   end
 
   def funds 
-    amount = fund_params[:funds]
-    current_user.funds += amount.to_f
+    current_user.funds += fund_params[:funds].to_f
     current_user.save
   end
   

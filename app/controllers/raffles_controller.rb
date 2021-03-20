@@ -15,7 +15,6 @@ class RafflesController < ApplicationController
 
   def index
     user = User.find_by(username: params[:user_username])
-    # binding.pry
     if user.nil? 
       user = current_user
       flash[:alert] = "#{params[:user_username]} could not be found."
@@ -33,29 +32,21 @@ class RafflesController < ApplicationController
 
   def create 
     @raffle = current_user.raffles.build(raffle_params)
-    # binding.pry
     if @raffle.save
       @raffle.cost = @raffle.goal / 20
       redirect_to user_raffles_path(current_user), notice: 'Raffle created' 
-    
     else
-      # redirect_to new_raffle_path#, alert: "something is wrong" # show the errors to why it didnt show 
       render :new
-      # redirect_to action: 'new'
     end
   end
 
   def edit
-    # @raffle = current_user.raffles.find_by(id: params[:id]) #AREL to speed things up
-    # binding.pry
     if @raffle.nil? 
       redirect_to browse_path, alert: "Raffle unkown"
     end 
   end 
 
   def update
-    # @raffle = current_user.raffles.find(params[:id]) #This is not dry user before_action
-    
     if @raffle.update(raffle_params)
       redirect_to raffle_path(@raffle), notice: 'Raffle updated'
     else
