@@ -16,12 +16,17 @@ description: <%= @raffle.description %>
 <% if current_user == @raffle.user %>
   <%= link_to "Entered users", raffle_entered_users_path(@raffle) %>
 <% end %>
-<% if !user_signed_in? %>
-  <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> 
-<% elsif current_user != @raffle.user && !@raffle.entered_users.include?(current_user) %>
-  <%= button_to "Enter", raffle_entries_path(@raffle), method: :post%>
-<% elsif @raffle.entered_users.include?(current_user) %>
-  <input type="submit" value="Entered" disabled>
-<% end %>
 
-<%= link_to "edit", edit_raffle_path if current_user == @raffle.user %>
+<% if @raffle.winner.nil? %>
+  <% if !user_signed_in? %>
+    <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> 
+  <% elsif current_user != @raffle.user && !@raffle.entered_users.include?(current_user) %>
+    <%= button_to "Enter", raffle_entries_path(@raffle), method: :post%>
+  <% elsif @raffle.entered_users.include?(current_user) %>
+    <input type="submit" value="Entered" disabled>
+  <% end %>
+
+  <%= link_to "edit", edit_raffle_path if current_user == @raffle.user %>
+<% else %>
+  the winner is <%= link_to @raffle.winner.username, user_path(@raffle.winner) %>
+<% end %>
