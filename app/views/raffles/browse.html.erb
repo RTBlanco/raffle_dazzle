@@ -1,5 +1,9 @@
 <% if !@raffles.empty? %> 
-  <%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
+  <div class="raffle-set">
+    <% @raffles.each do |raffle| %>
+      <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
+    <% end %>
+  </div>
 <% else %>
-  <%= @message %>
+  <p style="text-align: center;"><%= @message %></p>
 <% end %>

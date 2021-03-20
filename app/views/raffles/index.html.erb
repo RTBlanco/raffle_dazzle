@@ -1,4 +1,8 @@
 This is where all the users created raffles show 
 <% if !@raffles.nil? %>
-  <%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
+<div class="raffle-set">
+  <% @raffles.each do |raffle| %>
+    <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
+  <% end %>
+</div>
 <% end %>
