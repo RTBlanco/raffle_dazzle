@@ -2,7 +2,7 @@ class RafflesController < ApplicationController
   before_action :set_user_raffle, only: [:edit, :update]
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:browse, :show]
-  # helper_method :percentage, :is_complete?
+  
 
 
   def browse

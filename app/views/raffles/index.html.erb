@@ -1,7 +1,10 @@
-<% if !@raffles.nil? %>
-<div class="raffle-set">
-  <% @raffles.each do |raffle| %>
-    <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
-  <% end %>
-</div>
+<% if !@raffles.empty? %>
+  <div class="raffle-set">
+    <% @raffles.each do |raffle| %>
+      <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
+    <% end %>
+  </div>
+<% else %>
+  <h1 style="text-align: center;">You do not have any Raffles yet</h1> 
+  <h1 style="text-align: center;">Create one <%= link_to "here.", new_raffle_path %></h1>
 <% end %>
