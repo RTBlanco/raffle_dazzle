@@ -1,11 +1,27 @@
-<% @raffle.entered_users.each do |user| %>
-  username: <%= user.username %>
-  name: <%= user.name %>
-  email: <%= user.email %>
-<% end %>
-
-<% if @raffle.winner.nil? %>
-  <%= button_to "Select winner", raffle_winner_path, method: :post %>
-<% else %> 
-  the winner is <%= link_to @raffle.winner.username, user_path(@raffle.winner) %>
+<% if !@raffle.entered_users.empty? %>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6">
+      <div class="list-group">
+        <% @raffle.entered_users.each do |user| %>
+          <%= link_to user_path(user), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= user.username %></h5>
+            </div>
+            <p><strong>Name: </strong><%= user.name %></p>
+            <p><strong>Email: </strong><%= user.email %></p>
+          <% end %>
+        <% end %>
+      </div>
+    
+      <% if @raffle.winner.nil? && is_complete?(@raffle) %>
+        <%= button_to "Select winner", raffle_winner_path, style: "text-align: center;", class: "btn btn-success form-btn", method: :post %>
+      <% elsif is_complete?(@raffle) %>
+        <h5 style="text-align: center;">The Winner is <%= link_to @raffle.winner.username, user_path(@raffle.winner) %></h5> 
+      <% end %>
+    </div>
+  </div>
+</div>
+<% else %>
+  <h1 style="text-align: center;">No Users have entered your raffle yet</h1>
 <% end %>

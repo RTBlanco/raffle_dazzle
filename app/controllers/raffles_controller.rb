@@ -2,6 +2,7 @@ class RafflesController < ApplicationController
   before_action :set_user_raffle, only: [:edit, :update]
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:browse, :show]
+  # helper_method :percentage, :is_complete?
 
 
   def browse
@@ -32,8 +33,9 @@ class RafflesController < ApplicationController
 
   def create 
     @raffle = current_user.raffles.build(raffle_params)
-    if @raffle.save
+    if @raffle.valid?
       @raffle.cost = @raffle.goal / 20
+      @raffle.save
       redirect_to user_raffles_path(current_user), notice: 'Raffle created' 
     else
       render :new
@@ -60,6 +62,14 @@ class RafflesController < ApplicationController
   end
 
   private
+
+  # def percentage(raffle)
+  #   (raffle.amount.to_int * 100 ) / raffle.goal.to_int 
+  # end
+
+  # def is_complete?(raffle)
+  #   percentage(raffle) == 100
+  # end
 
   def raffle_params 
     params.require(:raffle).permit(:title, :item, :goal, :description)

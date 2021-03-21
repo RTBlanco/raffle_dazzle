@@ -1,10 +1,21 @@
 
 <% if !@account.nil? %>
-  username: <%= @account.username %>
-  <br>
-  name: <%= @account.name %>
-  <br>
-  email: <%= @account.email %>
-
-  <%= link_to "edit", edit_user_registration_path if current_user == @account %>
+  <div class="container profile">
+    <div class="row justify-content-around align-items-center">
+      <div class="col-lg-4">
+        <h2><%= @account.username %></h2>
+        <p><strong>Name: </strong><%= @account.name %></p>
+        <p><strong>Email: </strong><%= @account.email %></p>
+      
+        <%= link_to "edit", edit_user_registration_path, class: "btn btn-success form-btn" if current_user == @account %>
+      </div>
+      <div class="col-lg-6">
+        <div class="raffle-set">
+          <% @raffles.each do |raffle| %>
+            <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
