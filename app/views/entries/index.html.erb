@@ -1,1 +1,13 @@
-<%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
+<% if !@raffles.empty? %>
+  <div class="raffle-set">
+    <% @raffles.each do |raffle| %>
+      <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
+    <% end %>
+  </div>
+<% else %>
+  <div style="text-align: center;">
+    <h2>You are not entered in any raffles </h2>
+    <br>
+    <h2>Enter a raffle <%= link_to "here.", browse_path %></h2>
+  </div>
+<% end %>

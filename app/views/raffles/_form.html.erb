@@ -1,36 +1,45 @@
-<%= form_for raffle do |r| %>
-
-  <% if raffle.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(raffle.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% raffle.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6">
+      <h2>New Raffle</h2>
+      
+      <%= form_for raffle do |r| %>
+        <% if raffle.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(raffle.errors.count, "error") %> prohibited this post from being saved:</h2>
+      
+            <ul>
+            <% raffle.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div class="form-group">
+          <%= r.label :title %>
+          <%= r.text_field :title, class:"form-control" %>
+        
+        
+        
+          <%= r.label :item %>
+          <%= r.text_field :item, class:"form-control" %>
+        
+      
+        
+          <%= r.label :goal %>
+          <%= r.text_field :goal, class:"form-control" %>
+        
+      
+        
+          <%= r.label :description %>
+          <%= r.text_area :description, class: "form-control" %>
+        </div>
+      
+        <%= r.submit "Create Raffle", class: "btn btn-primary form-btn" %>
       <% end %>
-      </ul>
+
     </div>
-  <% end %>
-  
-  <div class="fieldset">
-    <%= r.label :title %>
-    <%= r.text_field :title %>
   </div>
-  
-  <div class="fieldset">
-    <%= r.label :item %>
-    <%= r.text_field :item %>
-  </div>
+</div>
 
-  <div class="fieldset">
-    <%= r.label :goal %>
-    <%= r.text_field :goal %>
-  </div>
-
-  <div class="fieldset">
-    <%= r.label :description %>
-    <%= r.text_area :description %>
-  </div>
-
-  <%= r.submit %>
-<% end %>
