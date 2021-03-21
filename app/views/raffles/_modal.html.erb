@@ -19,9 +19,9 @@
           <%= u.number_field :funds, value: number_to_currency(current_user.funds), step: :any %>
       </div>
       <div class="modal-footer">
-          <%= u.submit "Add Funds", class: "btn btn-primary", onclick: "window.location.reload();" %>
+          <%= u.submit "Add Funds", class: "btn btn-primary" %>
         <% end %>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.reload();">Close</button>
       </div>
     </div>
   </div>

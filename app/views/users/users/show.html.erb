@@ -2,14 +2,14 @@
 <% if !@account.nil? %>
   <div class="container profile">
     <div class="row justify-content-around align-items-center">
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <h2><%= @account.username %></h2>
         <p><strong>Name: </strong><%= @account.name %></p>
         <p><strong>Email: </strong><%= @account.email %></p>
       
         <%= link_to "edit", edit_user_registration_path, class: "btn btn-success form-btn" if current_user == @account %>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-7">
         <div class="raffle-set">
           <% @raffles.each do |raffle| %>
             <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>

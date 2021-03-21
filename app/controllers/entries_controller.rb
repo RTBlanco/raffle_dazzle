@@ -20,6 +20,8 @@ class EntriesController < ApplicationController
 
   def winner 
     @raffle.winner = @raffle.entered_users.sample
+    @raffle.user.funds += @raffle.amount
+    @raffle.user.save
     @raffle.save
     redirect_to raffle_entered_users_path
   end

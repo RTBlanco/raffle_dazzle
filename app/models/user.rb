@@ -11,7 +11,9 @@ class User < ApplicationRecord
   has_many :entries
   has_many :entered_raffles , through: :entries
 
-
+  def username=(username)
+    super(username.delete(' '))
+  end
 
   def to_param
     self.username
