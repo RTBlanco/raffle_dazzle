@@ -1,4 +1,6 @@
 class Raffle < ApplicationRecord
+  paginates_per 6
+
   belongs_to :user
   belongs_to :winner, class_name: 'User', foreign_key: 'winner_id', optional: true
 

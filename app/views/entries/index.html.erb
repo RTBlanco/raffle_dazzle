@@ -4,6 +4,7 @@
       <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
     <% end %>
   </div>
+  <%= paginate @raffles %>
 <% else %>
   <div style="text-align: center;">
     <h2>You are not entered in any raffles </h2>
