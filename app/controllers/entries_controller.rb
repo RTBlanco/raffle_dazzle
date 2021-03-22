@@ -3,10 +3,11 @@ class EntriesController < ApplicationController
   skip_before_action :set_raffle, only: [:index]
 
   def users
+    @users = @raffle.entered_users.order(:created_at).reverse_order.page(params[:page])
   end
 
   def index 
-    @raffles = current_user.entered_raffles 
+    @raffles = current_user.entered_raffles.order(:created_at).reverse_order.page(params[:page])
   end
 
   def create 

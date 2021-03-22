@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-lg-6">
-      <h2>New Raffle</h2>
+      <h2><%= action %> Raffle</h2>
       
       <%= form_for raffle do |r| %>
         <% if raffle.errors.any? %>
@@ -36,7 +36,7 @@
           <%= r.text_area :description, class: "form-control" %>
         </div>
       
-        <%= r.submit "Create Raffle", class: "btn btn-primary form-btn" %>
+        <%= r.submit "#{action} Raffle", class: "btn btn-primary form-btn" %>
       <% end %>
 
     </div>

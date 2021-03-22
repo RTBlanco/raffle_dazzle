@@ -22,11 +22,16 @@ guancho = User.create(name: "Guancho The Gecko", username: "Overlord", email: "g
 
 
 
-batman.raffles.build(title: "Bat mobile", item: "car", goal: "100000", description: "this is not the real one!").save
-robin.raffles.build(title: "The real Bat Mobile", item: "car", goal: "5000000", description: "Bruce wayne does not pay me at all").save
-super_man.raffles.build(title: "The Super car", item: "car", goal: "5000000", description: "Why would I, Superman need a car when i can fly?").save
-guancho.raffles.build(title: "Nikes air force", item: "Shoes", goal: "5500", description: "My owner's shoes" ).save
-guancho.raffles.build(title: "Worn Levis ", item: "pants", goal: "5500", description: "My owner's pants, he has no idea that im selling his stuff").save
-guancho.raffles.build(title: "Xbox one X", item: "console", goal: "300", description: "My owner's xbox, He'll sure be looking for this soon").save
-guancho.raffles.build(title: "Baby Yoda", item: "Toy", goal: "300", description: "My owner's favorite toy, imagine being an adult and still buying toys").save
-guancho.raffles.build(title: "Gucci Glasses", item: "glasses", goal: "1000", description: "My owner's glasse, imagine spending that much money to SEE").save
+batman.raffles.build(title: "Bat mobile", item: "car", goal: "100000",cost: 100000.0 / 20  , description: "this is not the real one!").save
+robin.raffles.build(title: "The real Bat Mobile", item: "car", goal: "5000000",cost: 5000000.0 / 20 ,  description: "Bruce wayne does not pay me at all").save
+super_man.raffles.build(title: "The Super car", item: "car", goal: "5000000",cost: 5000000.0 / 20 ,  description: "Why would I, Superman need a car when i can fly?").save
+
+guancho.raffles.build(title: "Nikes air force", item: "Shoes", goal: "5500",cost: 5500.0 / 20 ,  description: "My owner's shoes" ).save
+guancho.raffles.build(title: "Worn Levis ", item: "pants", goal: "5500",cost: 5500.0 / 20,  description: "My owner's pants, he has no idea that im selling his stuff").save
+guancho.raffles.build(title: "Xbox one X", item: "console", goal: "300",cost: 300.0 / 20,  description: "My owner's xbox, He'll sure be looking for this soon").save
+guancho.raffles.build(title: "Baby Yoda", item: "Toy", goal: "300",cost: 300.0 / 20,  description: "My owner's favorite toy, imagine being an adult and still buying toys").save
+guancho.raffles.build(title: "Gucci Glasses", item: "glasses", goal: "1000",cost: 1000.0 / 20,  description: "My owner's glasse, imagine spending that much money to SEE").save
+
+guancho.raffles.build(title: "Magical Gecko Powers", item: "Powers", goal: "3000000",cost: 3000000.0 / 20,  description: "I am overlord!!").save
+
+

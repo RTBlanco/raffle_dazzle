@@ -1,9 +1,11 @@
 <% if !@raffles.empty? %> 
+  
   <div class="raffle-set">
     <% @raffles.each do |raffle| %>
       <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
     <% end %>
   </div>
+  <%= paginate @raffles %>
 <% else %>
   <p style="text-align: center;"><%= @message %></p>
 <% end %>

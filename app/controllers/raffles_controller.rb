@@ -7,10 +7,10 @@ class RafflesController < ApplicationController
 
   def browse
     begin
-      @raffles = Raffle.raffle_search(raffle_params.to_hash['title']) 
+      @raffles = Raffle.raffle_search(raffle_params.to_hash['title']).order(:created_at).reverse_order.page(params[:page]) 
       @message = "Your search - #{raffle_params.to_hash['title']} - did not match any raffle tiles."
     rescue ActionController::ParameterMissing
-      @raffles = Raffle.all
+      @raffles = Raffle.order(:created_at).reverse_order.page(params[:page])
     end
   end 
 
@@ -20,7 +20,7 @@ class RafflesController < ApplicationController
       user = current_user
       flash[:alert] = "#{params[:user_username]} could not be found."
     end
-    @raffles = user.raffles
+    @raffles = user.raffles.order(:created_at).reverse_order.page(params[:page])
   end
 
   def show 
@@ -74,9 +74,9 @@ class RafflesController < ApplicationController
   def purhase(raffle)
     current_user.funds -= raffle.cost
     raffle.amount += raffle.cost
+    current_user.entered_raffles << raffle
     current_user.save
     raffle.save
-    current_user.entered_raffles << raffle
   end
    
   def set_user_raffle

@@ -4,6 +4,7 @@
       <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
     <% end %>
   </div>
+  <%= paginate @raffles %>
 <% else %>
   <h1 style="text-align: center;">You do not have any Raffles yet</h1> 
   <h1 style="text-align: center;">Create one <%= link_to "here.", new_raffle_path %></h1>
