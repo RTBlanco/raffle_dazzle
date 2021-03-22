@@ -12,4 +12,5 @@ class Raffle < ApplicationRecord
 
   scope :raffle_search, ->(title) {where("title LIKE ?", title) if title.present? } 
   scope :first_6, -> user_id {where("user_id = ?", user_id).limit(6) }
+
 end

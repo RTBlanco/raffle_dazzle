@@ -63,14 +63,6 @@ class RafflesController < ApplicationController
 
   private
 
-  # def percentage(raffle)
-  #   (raffle.amount.to_int * 100 ) / raffle.goal.to_int 
-  # end
-
-  # def is_complete?(raffle)
-  #   percentage(raffle) == 100
-  # end
-
   def raffle_params 
     params.require(:raffle).permit(:title, :item, :goal, :description)
   end
