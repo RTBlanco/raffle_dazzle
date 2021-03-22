@@ -4,7 +4,7 @@
 
       <h1><%= @raffle.title %></h1>
       <% if current_user != @raffle.user %>
-        <p><strong>Owner: </strong><%= link_to @raffle.user.username, user_raffles_path(@raffle.user) %></p>
+        <p><strong>Owner: </strong><%= link_to @raffle.user.username, user_path(@raffle.user) %></p>
       <% end %>
       <p><strong>Item: </strong><%= @raffle.item %></p>
       <p><strong>Goal: </strong><%= number_to_currency(@raffle.goal) %></p>

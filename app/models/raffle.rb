@@ -13,6 +13,6 @@ class Raffle < ApplicationRecord
   validates :title, :item, :goal, :description, presence: true 
 
   scope :raffle_search, ->(title) {where("title LIKE ?", title) if title.present? } 
-  scope :first_6, -> user_id {where("user_id = ?", user_id).limit(6) }
+  scope :first_6, -> user_id {where("user_id = ?", user_id).order(:created_at).reverse_order.limit(6) }
 
 end
