@@ -1,5 +1,5 @@
 # Razzle Dazzle
-This is a simple web app that will allow users to be able to upload and share their blogs.
+A simple web app where users are able to raffle items and join raffles too.
 
 ## Installation and Usage
 first, fork and clone the repository and where on your local machine. After it has been correctly cloned, navigate into the raffle_dazzle directory and in your terminal execute:
