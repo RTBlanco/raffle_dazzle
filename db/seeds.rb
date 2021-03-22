@@ -8,5 +8,25 @@
 batman = User.create(name: "bruce wayne", username: "batman", email: "batman@bat.com", password: "testtest", password_confirmation: "testtest")
 robin = User.create(name: "damian wayne", username: "robin", email: "robin@bat.com", password: "testtest", password_confirmation: "testtest")
 
-raffle = batman.raffles.build(title: "this title", item: "raffle", goal: "4000", description: "this is a description" )
-raffle.save
+super_man = User.create(name: "Clark Kent", username: "Superman", email: "superman@krypton.com", password: "testtest", password_confirmation: "testtest") 
+super_boy = User.create(name: "Jon Kent", username: "Superboy", email: "superboy@krypton.com", password: "testtest", password_confirmation: "testtest")
+
+spiderman = User.create(name: "Peter Parker", username: "Spiderman", email: "spiderman@spider.com", password: "testtest", password_confirmation: "testtest")
+spiderwomen = User.create(name: "Jessica Drew", username: "Spiderwoman", email: "spiderwoman@spider.com", password: "testtest", password_confirmation: "testtest")
+
+melanie = User.create(name: "Melanie Toribio", username: "Mel", email: "mel@fam.com", password: "testtest", password_confirmation: "testtest")
+samira = User.create(name: "Samira Toribio", username: "Samsam", email: "sam@fam.com", password: "testtest", password_confirmation: "testtest")
+roslia = User.create(name: "Roslia Toribio", username: "LIA", email: "lia@fam.com", password: "testtest", password_confirmation: "testtest")
+rosy = User.create(name: "Rosy The Dog", username: "doggie", email: "doggie@fam.com", password: "testtest", password_confirmation: "testtest")
+guancho = User.create(name: "Guancho The Gecko", username: "Overlord", email: "god@fam.com", password: "testtest", password_confirmation: "testtest")
+
+
+
+batman.raffles.build(title: "Bat mobile", item: "car", goal: "100000", description: "this is not the real one!").save
+robin.raffles.build(title: "The real Bat Mobile", item: "car", goal: "5000000", description: "Bruce wayne does not pay me at all").save
+super_man.raffles.build(title: "The Super car", item: "car", goal: "5000000", description: "Why would I, Superman need a car when i can fly?").save
+guancho.raffles.build(title: "Nikes air force", item: "Shoes", goal: "5500", description: "My owner's shoes" ).save
+guancho.raffles.build(title: "Worn Levis ", item: "pants", goal: "5500", description: "My owner's pants, he has no idea that im selling his stuff").save
+guancho.raffles.build(title: "Xbox one X", item: "console", goal: "300", description: "My owner's xbox, He'll sure be looking for this soon").save
+guancho.raffles.build(title: "Baby Yoda", item: "Toy", goal: "300", description: "My owner's favorite toy, imagine being an adult and still buying toys").save
+guancho.raffles.build(title: "Gucci Glasses", item: "glasses", goal: "1000", description: "My owner's glasse, imagine spending that much money to SEE").save
