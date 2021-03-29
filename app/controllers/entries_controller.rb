@@ -3,7 +3,7 @@ class EntriesController < ApplicationController
   skip_before_action :set_raffle, only: [:index]
 
   def users
-    @users = @raffle.entered_users.order(:created_at).reverse_order.page(params[:page])
+    @entries =  @raffle.entries.order(:created_at).reverse_order.page(params[:page])
   end
 
   def index 
@@ -12,7 +12,7 @@ class EntriesController < ApplicationController
 
   def create 
     if @raffle && can_afford?(@raffle)
-      purhase(@raffle)
+      purhase(@raffle, comment_params[:comment])
       redirect_to raffle_path(@raffle), notice: "you succsefully entered the raffle"
     else
       redirect_to raffle_path(@raffle), alert: "Not enough funds"
@@ -37,11 +37,16 @@ class EntriesController < ApplicationController
     current_user.funds >= raffle.cost 
   end
   
-  def purhase(raffle)
+  def purhase(raffle, comment)
     current_user.funds -= raffle.cost
     raffle.amount += raffle.cost
     current_user.save
     raffle.save
-    current_user.entered_raffles << raffle
+    entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment) 
+    entry.save
+  end
+
+  def comment_params 
+    params.permit(:comment)
   end
 end 

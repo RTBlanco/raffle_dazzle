@@ -1,19 +1,23 @@
-<% if !@raffle.entered_users.empty? %>
+<% if !@entries.empty? %>
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col-lg-6">
         <div class="list-group">
-          <% @raffle.entered_users.each do |user| %>
-            <%= link_to user_path(user), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+          <% @entries.each do |entry| %>
+            <%= link_to user_path(entry.user), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= user.username %></h5>
+                <h5 class="mb-1"><%= entry.user.username %></h5>
               </div>
-              <p><strong>Name: </strong><%= user.name %></p>
-              <p><strong>Email: </strong><%= user.email %></p>
+              <p><strong>Name: </strong><%= entry.user.name %></p>
+              <p><strong>Email: </strong><%= entry.user.email %></p>
+              
+              <% if !entry.comment.nil? && entry.comment != '' %>
+                <p><strong>Comment: </strong><%= entry.comment %></p>
+              <% end %>
             <% end %>
           <% end %>
         </div>
-      
+        
         <% if @raffle.winner.nil? && is_complete?(@raffle) %>
           <%= button_to "Select winner", raffle_winner_path, style: "text-align: center;", class: "btn btn-success form-btn", method: :post %>
         <% elsif is_complete?(@raffle) %>
@@ -22,7 +26,7 @@
       </div>
     </div>
   </div>
-  <%= paginate @users %>
+  <%= paginate @entries %>
 <% else %>
   <h1 style="text-align: center;">No Users have entered your raffle yet</h1>
 <% end %>

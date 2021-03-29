@@ -24,7 +24,7 @@
         <% if !user_signed_in? %>
           <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> 
         <% elsif current_user != @raffle.user && !@raffle.entered_users.include?(current_user) %>
-          <%= button_to "Enter", raffle_entries_path(@raffle), class:"btn btn-success", method: :post%>
+          <%= render partial: "raffles/enter_form", locals: {raffle: @raffle} %>
         <% elsif @raffle.entered_users.include?(current_user) && !is_complete?(@raffle) %>
           <input class="btn btn-success" type="submit" value="Entered" disabled>
         <% elsif is_complete?(@raffle) %>
