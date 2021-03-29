@@ -1,10 +1,14 @@
-<%= link_to raffle_path(raffle) do %>
-  <div class="container">
-    <div class="raffle" style="<%= "background: rgb(0, 207, 254);" if is_complete?(raffle) %>" >
-      <h2><%= raffle.title %></h2>
-      <p><strong>Item:</strong><%= raffle.item%></p>
-      <p><strong>Goal:</strong><%= number_to_currency(raffle.goal) %></p>
-      <p><strong>Cost:</strong><%= number_to_currency(raffle.cost) %></p>
-    </div>
-  </div>
-<% end %>
+<div class="raffle-set">
+  <% raffles.each do |raffle| %>
+    <%= link_to raffle_path(raffle) do %>
+      <div class="container">
+        <div class="raffle" style="<%= "background: rgb(0, 207, 254);" if is_complete?(raffle) %>" >
+          <h2><%= raffle.title %></h2>
+          <p><strong>Item:</strong><%= raffle.item%></p>
+          <p><strong>Goal:</strong><%= number_to_currency(raffle.goal) %></p>
+          <p><strong>Cost:</strong><%= number_to_currency(raffle.cost) %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

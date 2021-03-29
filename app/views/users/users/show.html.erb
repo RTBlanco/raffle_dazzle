@@ -10,11 +10,7 @@
         <%= link_to "edit", edit_user_registration_path, class: "btn btn-success form-btn" if current_user == @account %>
       </div>
       <div class="col-lg-7">
-        <div class="raffle-set">
-          <% @raffles.each do |raffle| %>
-            <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
-          <% end %>
-        </div>
+        <%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %>
       </div>
     </div>
   </div>

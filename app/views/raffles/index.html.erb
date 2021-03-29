@@ -1,9 +1,5 @@
 <% if !@raffles.empty? %>
-  <div class="raffle-set">
-    <% @raffles.each do |raffle| %>
-      <%= render partial: 'raffles/raffles', locals: {raffle: raffle} %>
-    <% end %>
-  </div>
+  <%= render partial: 'raffles/raffles', locals: {raffles: @raffles} %> 
   <%= paginate @raffles %>
 <% else %>
   <h1 style="text-align: center;">You do not have any Raffles yet</h1> 
