@@ -1,0 +1,7 @@
+<%= form_tag raffle_entries_path(raffle) do %>
+  <div class="form-group">
+    <%= label_tag :comment, 'Enter a comment (optional)' %>
+    <%= text_field_tag :comment ,nil ,class:"form-control" %>
+    <%= submit_tag "Enter", class:"btn btn-success"%>
+  </div>
+<% end %>
