@@ -11,9 +11,9 @@ class Raffle < ApplicationRecord
 
   # Validations 
   validates :title, :item, :goal, :description, presence: true 
-  validates :description, legnth: {maximum: 100}
-  validates :item, legnth: {maximum: 15 }
-  validates :title, legnth: {maximum: 10}
+  validates :description, length: {maximum: 100}
+  validates :item, length: {maximum: 15 }
+  validates :title, length: {maximum: 10}
 
   scope :raffle_search, ->(title) {where("title LIKE ?", title) if title.present? } 
   scope :first_6, ->(user_id) {where("user_id = ?", user_id).order(:created_at).reverse_order.limit(6) }

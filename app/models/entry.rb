@@ -1,6 +1,6 @@
 class Entry < ApplicationRecord
   paginates_per 4
-  validates :comment, length: { maximum: 10 }
+  validates :comment, length: { maximum: 20 }
 
   belongs_to :user
   belongs_to :raffle

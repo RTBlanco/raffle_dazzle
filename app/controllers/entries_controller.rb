@@ -12,7 +12,9 @@ class EntriesController < ApplicationController
 
   def create 
     if @raffle && can_afford?(@raffle)
-      purhase(@raffle, comment_params[:comment])
+      if !purhase(@raffle, comment_params[:comment])
+        return redirect_to raffle_path(@raffle), alert: "Comment can only be 20 characters max"
+      end 
       redirect_to raffle_path(@raffle), notice: "you succsefully entered the raffle"
     else
       redirect_to raffle_path(@raffle), alert: "Not enough funds"
@@ -38,12 +40,17 @@ class EntriesController < ApplicationController
   end
   
   def purhase(raffle, comment)
+    @entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment) 
+    binding.pry
+    if !@entry.valid?
+      return false
+    end
+    @entry.save
     current_user.funds -= raffle.cost
     raffle.amount += raffle.cost
     current_user.save
     raffle.save
-    entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment) 
-    entry.save
+    true
   end
 
   def comment_params 
