@@ -7,11 +7,9 @@
           <%= link_to "Browse", browse_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
           <%= link_to "My raffles", user_raffles_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <!-- <a class="nav-link" href="#">Link</a> -->
           <%= link_to "New Raffle", new_raffle_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
@@ -19,12 +17,9 @@
             Account
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <!-- <a class="dropdown-item" href="#">Action</a> -->
             <%= link_to "View Account", user_path(current_user), class: "dropdown-item" %>
-            <!-- <a class="dropdown-item" href="#">Another action</a> -->
             <%= link_to "Entered raffles", raffle_entries_path(current_user), class: "dropdown-item" %>  
             <div class="dropdown-divider"></div>
-            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
             <%= link_to "logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           </div>
         </li>
