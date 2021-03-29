@@ -5,7 +5,7 @@ class User < ApplicationRecord
           omniauth_providers: %i[facebook]
 
   # Associations 
-  has_many :raffles#, class_name: "Raffle", foreign_key: "user_id"
+  has_many :raffles
   has_many :raffles_won, class_name: "Raffle", foreign_key: "winner_id"
 
   has_many :entries
@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    # binding.pry
+    
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]

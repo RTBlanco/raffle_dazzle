@@ -22,11 +22,12 @@
             <br />
             <em><%= @minimum_password_length %> characters minimum</em>
           <% end %>
-        
+          
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
         
-      
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
         
           <%= f.submit "Update", class: "btn btn-success" %>
         </div>
