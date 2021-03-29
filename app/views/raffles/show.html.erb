@@ -24,7 +24,7 @@
         <% if !user_signed_in? %>
           <%= link_to "login", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> 
         <% elsif current_user != @raffle.user && !@raffle.entered_users.include?(current_user) %>
-          <%= render partial: "raffles/enter_form", locals: {raffle: @raffle} %>
+          <%= render partial: "raffles/enter_form", locals: {entry: @entry, raffle: @raffle} %>
         <% elsif @raffle.entered_users.include?(current_user) && !is_complete?(@raffle) %>
           <input class="btn btn-success" type="submit" value="Entered" disabled>
         <% elsif is_complete?(@raffle) %>
@@ -33,9 +33,7 @@
         <%= link_to "edit", edit_raffle_path if current_user == @raffle.user %>
       <% else %>
         <h2>The Winner is <%= link_to @raffle.winner.username, user_path(@raffle.winner) %></h2>
-      <% end %> 
-
-      
+      <% end %>  
     </div>
   </div>
 </div>

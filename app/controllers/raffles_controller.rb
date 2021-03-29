@@ -25,7 +25,7 @@ class RafflesController < ApplicationController
 
   def show 
     @raffle = Raffle.find(params[:id])
-    
+    @entry = Entry.new
   end 
 
   def new

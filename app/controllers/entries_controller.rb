@@ -12,10 +12,25 @@ class EntriesController < ApplicationController
 
   def create 
     if @raffle && can_afford?(@raffle)
-      if !purhase(@raffle, comment_params[:comment])
-        return redirect_to raffle_path(@raffle), alert: "Comment can only be 20 characters max"
-      end 
-      redirect_to raffle_path(@raffle), notice: "you succsefully entered the raffle"
+
+      @entry = comment_params[:comment].nil? && comment_params[:comment] == '' ? @raffle.entries.build(user_id: current_user.id) : @raffle.entries.build(user_id: current_user.id,comment: comment_params[:comment]) 
+      # binding.pry
+      if @entry.valid?
+        current_user.funds -= @raffle.cost
+        @raffle.amount += @raffle.cost
+        current_user.save
+        @raffle.save
+        @entry.save
+        redirect_to raffle_path(@raffle), notice: "you succsefully entered the raffle"
+      else
+        # render :template => 'raffles/show'
+        render :controller => 'raffles', :action => 'show', :id => @raffle.id, :template => 'raffles/show'
+        # redirect_to raffle_path(@raffle)
+      end
+      # purhase(@raffle)
+      # if !purhase(@raffle, comment_params[:comment])
+      #   return redirect_to raffle_path(@raffle), alert: "Comment can only be 20 characters max"
+      # end 
     else
       redirect_to raffle_path(@raffle), alert: "Not enough funds"
     end 
@@ -39,21 +54,20 @@ class EntriesController < ApplicationController
     current_user.funds >= raffle.cost 
   end
   
-  def purhase(raffle, comment)
-    @entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment) 
-    binding.pry
-    if !@entry.valid?
-      return false
+  def purhase(raffle)
+    @entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment_params[:comment]) 
+    if @entry.valid?
+      current_user.funds -= raffle.cost
+      raffle.amount += raffle.cost
+      current_user.save
+      raffle.save
+      @entry.save
+    else  
+      render raffle_path(raffle)
     end
-    @entry.save
-    current_user.funds -= raffle.cost
-    raffle.amount += raffle.cost
-    current_user.save
-    raffle.save
-    true
   end
 
   def comment_params 
-    params.permit(:comment)
+    params.require(:entry).permit(:comment)
   end
 end 
