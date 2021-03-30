@@ -1,0 +1,17 @@
+<%= form_for @entry, url: raffle_entries_path  do |e| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@entry.errors.count, "error") %> prohibited this post from being saved:</h3>
+      <ul>
+      <% @entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= e.label :comment, 'Enter a comment (optional)' %>
+    <%= e.text_area :comment , class:"form-control" %>
+    <%= e.submit "Enter", class:"btn btn-success", style: "text-align; center:"%>
+  </div>
+<% end %>

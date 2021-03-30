@@ -10,9 +10,9 @@ class EntriesController < ApplicationController
     @raffles = current_user.entered_raffles.order(:created_at).reverse_order.page(params[:page])
   end
 
-  # def new
-  #   render :controller => 'raffles', :action => 'show', :template => 'raffles/show'
-  # end
+  def new
+    @entry = Entry.new
+  end
 
   def create 
     if @raffle && can_afford?(@raffle)
@@ -29,8 +29,8 @@ class EntriesController < ApplicationController
       else
         # render :template => 'raffles/show'
         # render :controller => 'raffles', :action => 'show', :id => @raffle.id, :template => 'raffles/show'
-        redirect_to raffle_path(@raffle)
-        # render :new
+        # redirect_to raffle_path(@raffle)
+        render :new
       end
       # purhase(@raffle)
       # if !purhase(@raffle, comment_params[:comment])
