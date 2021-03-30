@@ -59,18 +59,18 @@ class EntriesController < ApplicationController
     current_user.funds >= raffle.cost 
   end
   
-  def purhase(raffle)
-    @entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment_params[:comment]) 
-    if @entry.valid?
-      current_user.funds -= raffle.cost
-      raffle.amount += raffle.cost
-      current_user.save
-      raffle.save
-      @entry.save
-    else  
-      render raffle_path(raffle)
-    end
-  end
+  # def purhase(raffle)
+  #   @entry = comment.nil? && comment == '' ? raffle.entries.build(user_id: current_user.id) : raffle.entries.build(user_id: current_user.id,comment: comment_params[:comment]) 
+  #   if @entry.valid?
+  #     current_user.funds -= raffle.cost
+  #     raffle.amount += raffle.cost
+  #     current_user.save
+  #     raffle.save
+  #     @entry.save
+  #   else  
+  #     render raffle_path(raffle)
+  #   end
+  # end
 
   def comment_params 
     params.require(:entry).permit(:comment)

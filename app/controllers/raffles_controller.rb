@@ -3,8 +3,6 @@ class RafflesController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: [:browse, :show]
   
-
-
   def browse
     begin
       @raffles = Raffle.raffle_search(raffle_params.to_hash['title']).order(:created_at).reverse_order.page(params[:page]) 
@@ -25,8 +23,6 @@ class RafflesController < ApplicationController
 
   def show 
     @raffle = Raffle.find(params[:id])
-    
-    # @entry = Entry.new
   end 
 
   def new
@@ -69,17 +65,17 @@ class RafflesController < ApplicationController
     params.require(:raffle).permit(:title, :item, :goal, :description)
   end
 
-  def can_afford?(raffle)
-    current_user.funds >= raffle.cost 
-  end
+  # def can_afford?(raffle)
+  #   current_user.funds >= raffle.cost 
+  # end
   
-  def purhase(raffle)
-    current_user.funds -= raffle.cost
-    raffle.amount += raffle.cost
-    current_user.entered_raffles << raffle
-    current_user.save
-    raffle.save
-  end
+  # def purhase(raffle)
+  #   current_user.funds -= raffle.cost
+  #   raffle.amount += raffle.cost
+  #   current_user.entered_raffles << raffle
+  #   current_user.save
+  #   raffle.save
+  # end
    
   def set_user_raffle
     @raffle = current_user.raffles.find(params[:id])
