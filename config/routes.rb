@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   
   
   resources :raffles, only: [:create, :new, :edit, :update, :show, :destroy] do 
-    # post '/raffles/:raffle_id/entries', to: 'entries#enter', as: :enter
     resources :entries, only: [:create, :index]
     get 'entered_users', to: 'entries#users'
     post 'winner', to: 'entries#winner'  
