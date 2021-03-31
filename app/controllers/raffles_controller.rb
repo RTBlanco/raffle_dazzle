@@ -65,17 +65,6 @@ class RafflesController < ApplicationController
     params.require(:raffle).permit(:title, :item, :goal, :description)
   end
 
-  # def can_afford?(raffle)
-  #   current_user.funds >= raffle.cost 
-  # end
-  
-  # def purhase(raffle)
-  #   current_user.funds -= raffle.cost
-  #   raffle.amount += raffle.cost
-  #   current_user.entered_raffles << raffle
-  #   current_user.save
-  #   raffle.save
-  # end
    
   def set_user_raffle
     @raffle = current_user.raffles.find(params[:id])
