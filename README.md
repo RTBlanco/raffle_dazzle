@@ -1,5 +1,5 @@
 # Razzle Dazzle
-A simple web app where users are able to raffle items and join raffles too.
+A simple web app where users are able to raffle items and join raffles too, it allow users to be able to controll the When to start the raffle and when to end it. 
 
 ## Installation and Usage
 first, fork and clone the repository and where on your local machine. After it has been correctly cloned, navigate into the raffle_dazzle directory and in your terminal execute:
