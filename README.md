@@ -1,5 +1,5 @@
 # Razzle Dazzle
-A simple web app where users are able to raffle items and join raffles too, it allow users to be able to controll the When to start the raffle and when to end it. 
+Web app enabling users to create and enter raffles with full control over start and end timing. Built with Ruby on Rails; leverages RESTful architecture, responsive UI, and real-time management for seamless raffle workflows.
 
 ## Installation and Usage
 first, fork and clone the repository and where on your local machine. After it has been correctly cloned, navigate into the raffle_dazzle directory and in your terminal execute:
